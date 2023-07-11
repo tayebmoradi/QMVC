@@ -1,0 +1,7 @@
+﻿ @ {  
+        ViewBag.Title = "UserDashBoard";  
+    }  
+      
+  @if(Session["UserName"] != null) { 
+            Welcome @Session["UserName"].ToString() 
+    }
