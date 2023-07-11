@@ -1,7 +1,10 @@
-﻿ @ {  
-        ViewBag.Title = "UserDashBoard";  
-    }  
-      
-  @if(Session["UserName"] != null) { 
-            Welcome @Session["UserName"].ToString() 
+﻿@{
+    ViewData["Title"] = "dashbord";
+}
+      <div>
+    @if (Session["UserName"] != null)
+    {
+        Welcome @Session["UserName"].ToString();
     }
+      </div>
+  
