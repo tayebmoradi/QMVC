@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QMVC.Models;
 using System.Diagnostics;
+using 
 
 namespace QMVC.Controllers
 {
@@ -29,10 +30,12 @@ namespace QMVC.Controllers
             {
                
                     var obj = _database.Users.Where(a => a.Name.Equals(objUser.Name) && a.Password.Equals(objUser.Password)).FirstOrDefault();
+                     ViewData["id"] = obj;
                     if (obj != null)
                     {
-                        Session["UserID"] = obj.Id.ToString();
-                        Session["UserName"] = obj.Name.ToString();
+                    HttpContext.Session.SetString("UserID", obj.Id.ToString());
+                    HttpContext.Session.SetString("UserName", obj.Id.ToString());
+                 
                         return RedirectToAction("UserDashBoard");
                     }
                 
@@ -41,7 +44,8 @@ namespace QMVC.Controllers
         }
         public ActionResult UserDashBoard()
         {
-            if (Session["UserID"] != null)
+         var id =   ViewData["id"];
+            if (HttpContext.Session.SetString("UserID",id ) != null)
             {
                 return View();
             }
